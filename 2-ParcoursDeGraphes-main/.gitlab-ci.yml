@@ -1,0 +1,16 @@
+image: gitlab.dsi.universite-paris-saclay.fr:5005/m1infoisdalgorithmiqueavancee/computerlab/image:latest
+
+variables:
+  ASSIGNMENT: 2-ParcoursDeGraphes
+  STUDENT: $CI_PROJECT_ROOT_NAMESPACE
+
+autograde:
+  script:
+    - python -c "from travo.jupyter_course import JupyterCourse; JupyterCourse('','','','').student_autograde('$ASSIGNMENT', '$STUDENT')"
+
+  artifacts:
+    paths:
+      - autograded
+      - feedback
+    # reports:
+    #   junit: feedback/scores.xml
